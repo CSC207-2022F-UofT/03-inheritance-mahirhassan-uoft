@@ -5,6 +5,9 @@
  * 1. Introduction to Java helpful.
  */
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public abstract class Bag {
     /*
      * TODO: Create the following private instance variables
@@ -14,7 +17,10 @@ public abstract class Bag {
      *       - an array of Strings named contents
      */
 
-
+    private String color;
+    private int numberOfContents = 0;
+    private int capacity;
+    private ArrayList<String> contents = new ArrayList<String>();
 
 
     /*
@@ -27,6 +33,10 @@ public abstract class Bag {
      * its contents.)
      */
 
+    public Bag(String color, int capacity) {
+        this.color = color;
+        this.capacity = capacity;
+    }
 
 
 
@@ -38,17 +48,26 @@ public abstract class Bag {
      *           - getCapacity
      */
 
+    public String getColor() {
+        return color;
+    }
 
+    public int getNumberOfContents() {
+        return numberOfContents;
+    }
 
+    public int getCapacity() {
+        return capacity;
+    }
 
     /*
      * TODO: Create a setter function called setColor which sets the
      *       color of this bag to the given color.
      */
 
-
-
-
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     /*
      * TODO: Create a method called addItem that takes in a String
@@ -61,7 +80,15 @@ public abstract class Bag {
      *       and false otherwise.
      */
 
+    public boolean addItem(String item) {
+        this.contents.add(item);
+        this.numberOfContents += 1;
 
+        if (this.contents.get(numberOfContents - 1) == item)
+            return true;
+        else
+            return false;
+    }
 
 
 
@@ -76,7 +103,12 @@ public abstract class Bag {
      * @return
      */
 
-
+    public String popItem() {
+        String item = this.contents.get(this.numberOfContents - 1);
+        this.contents.remove(this.numberOfContents - 1);
+        this.numberOfContents -= 1;
+        return item;
+    }
 
 
 
@@ -87,7 +119,7 @@ public abstract class Bag {
      */
     public void increaseCapacity(int n) {
         // TODO: Implement this method.
-
+        this.capacity += n;
     }
 
     /**
